@@ -1,0 +1,185 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    {% include 'shionhouse/head.html' %} 
+    <style>
+        .new-arrival-label {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: #ff5733;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 5px 10px;
+        border-radius: 5px;
+        text-transform: uppercase;
+      } 
+    </style>
+</head>
+<body class="full-wrapper">
+    <!-- ? Preloader Start -->
+    {% include 'shionhouse/preloader_start.html' %}
+    <!-- Preloader Start-->
+    <!-- header Start -->
+    {% include 'shionhouse/header_start.html' %}
+    <!-- header end --> 
+    <!-- breadcrumb Start-->
+    {% include 'shionhouse/breadcrumb_start.html' %} 
+    <!-- breadcrumb End-->
+
+    <main>
+      
+        <!-- listing Area Start -->
+        <div class="category-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-7 col-lg-8 col-md-10">
+                        <div class="section-tittle mb-50">
+                            <h2>Shop with us</h2>
+                            <p>Browse from 230 latest items</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!--? Left content -->
+                    <div class="col-xl-3 col-lg-3 col-md-4 ">
+                        <!-- Job Category Listing start -->
+                        <div class="category-listing mb-50">
+                            <!-- single one -->
+                            <div class="single-listing">
+                                <!-- Select City items start -->
+                                <div class="select-job-items2">
+                                    <select name="select2"> 
+                                        <option value="">Category</option>
+                                        {% for dataProductCategory in dataProductCategorys %}
+                                        <option value="">{{dataProductCategory.category}}</option>
+                                        {% endfor %}
+                                        
+                                    </select>
+                                </div>
+                                <!--  Select City items End-->
+                                <!-- Select State items start -->
+                                <div class="select-job-items2">
+                                    <select name="select3">
+                                        <option value="">Type</option> 
+                                        {% for dataProductType in dataProductTypes %}
+                                        <option value="">{{dataProductType.types}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <!--  Select State items End-->
+                                <!-- Select km items start -->
+                                <!-- <div class="select-job-items2">
+                                    <select name="select4">
+                                        <option value="">Size</option>
+                                        <option value="">SM</option>
+                                        <option value="">LG</option>
+                                        <option value="">XL</option>
+                                        <option value="">XXL</option>
+                                    </select>
+                                </div> -->
+                                <!--  Select km items End-->
+                                <!-- Select km items start -->
+                                <div class="select-job-items2">
+                                    <select name="select5">
+                                        <option value="">Color</option> 
+                                        {% for dataProductColor in dataProductColors %}
+                                        <option value="">{{dataProductColor.color}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <!--  Select km items End-->
+                                <!-- Select km items start -->
+                                <div class="select-job-items2">
+                                    <select name="select6"> 
+                                        <option value="">Price range</option> 
+                                        {% for dataProductPriceRange in dataProductPriceRanges %}
+                                        <option value="">{{dataProductPriceRange.priceRange}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <!--  Select km items End-->
+                            </div>
+                        </div>
+                        <!-- Job Category Listing End -->
+                    </div>
+                    <!--?  Right content -->
+                    <div class="col-xl-9 col-lg-9 col-md-8">
+                        <!--? New Arrival Start -->
+                        <div class="new-arrival new-arrival2">
+                          <div class="row">
+                            {% for dataProduct in dataProducts %}
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                              <div class="single-new-arrival mb-50 text-center">
+                                <div class="popular-img">
+                                  <img src="{% static dataProduct.productImage %}" alt="" />
+                                  <h1 class="new-arrival-label">{{dataProduct.statusId}}</h1>
+                                  <div class="favorit-items">
+                                    <!-- <span class="flaticon-heart"></span> -->
+                                    <img
+                                      src="{% static 'assets/img/gallery/favorit-card.png' %}"
+                                      alt=""
+                                    />
+                                  </div>
+                                </div>
+                                <div class="popular-caption">
+                                  <h3>
+                                    <a href="{% url 'product_details' dataProduct.id %}"
+                                      >{{dataProduct.productName}}</a
+                                    >
+                                  </h3>
+                                  <div class="rating mb-10">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                  </div>
+                                  <h1>$ {{dataProduct.productPrice }}</h1>
+                                  <span style="text-decoration: line-through"
+                                    >$ {{dataProduct.productOriginalPrice}}</span
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                            {% endfor %}
+                          </div>
+                          <!-- Button -->
+                          <div class="row justify-content-center">
+                            <div class="room-btn mt-20">
+                              <a href="catagori.html" class="border-btn">Browse More</a>
+                            </div>
+                          </div>
+                        </div>
+                        <!--? New Arrival End -->
+                      </div>
+                      
+                </div>
+            </div>
+        </div>
+<!-- listing-area Area End -->
+<!--? Popular Items Start --> 
+{% include 'shionhouse/popular_items.html' %}
+
+<!-- Popular Items End -->
+<!--? Services Area Start -->
+{% include 'shionhouse/services_area.html' %} 
+<!--? Services Area End -->
+</main>
+
+  <!-- Footer Start-->
+  {% include 'shionhouse/footer_start.html' %}
+  <!-- Footer End-->
+  <!--? Search model Begin -->
+  {% include 'shionhouse/search_model_begin.html' %}
+  <!-- Search model end -->
+  <!-- Scroll Up -->
+  {% include 'shionhouse/scroll_up.html' %}
+
+<!-- JS here -->
+{% include 'shionhouse/js_here.html' %}
+
+</body>
+</html>

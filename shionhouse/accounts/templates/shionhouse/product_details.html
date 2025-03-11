@@ -1,0 +1,124 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    {% include 'shionhouse/head.html' %}
+</head>
+<body class="full-wrapper">
+    <!-- ? Preloader Start -->
+    {% include 'shionhouse/preloader_start.html' %}
+    <!-- Preloader Start-->
+    {% include 'shionhouse/header_start.html' %}
+    <!-- header end -->
+    <main>
+        <!-- breadcrumb Start-->
+        <div class="page-notification">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{% url 'shop' %}">shop</a></li> 
+                            </ol>
+                        </nav> 
+                    </div>
+                </div>
+            </div>
+        </div>  
+        <!-- breadcrumb End-->
+        <!--?  Details start -->
+        <div class="directory-details pt-padding">
+            <div class="container">
+                
+                {% for dataProductDetail in dataProductDetails %}
+                <div class="row">
+                    <div class="col-lg-8">
+                            <div class="small-tittle mb-20">
+                            <h2>{{dataProductDetail.productName}} | {{dataProductDetail.statusId}}</h2>
+                        </div>
+                        <!-- <div class="small-tittle mb-20"> 
+                            <h2>Description {{dataProductDetail.id}}</h2>
+                        </div> -->
+                        <div class="directory-cap mb-40">
+                            <p>{{dataProductDetail.discription}}</p>
+                        </div>
+                        <div class="gallery-img">
+                            <div class="row">
+                                {% for dataImage in dataImages %} 
+                                <div class="col-lg-6"> 
+                                    <img src="{% static dataImage.productImageURL %}" class="mb-30" alt="">
+                                </div>
+                                {% endfor %} 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="map">
+                            <img src="{% static 'assets/img/gallery/map.png' %}" alt="">
+                        </div>
+                        <div class="form-wrapper pt-80">
+                            <div class="row ">
+                                <div class="col-xl-12">
+                                    <div class="small-tittle mb-30"> 
+                                        <h1>Type  : {{dataProductDetail.categoryId}}</h1>
+                                        <h1>Price Discount : $ {{dataProductDetail.productPrice}}</h1>
+                                        <h1 >Price : $ <span style="text-decoration: line-through;">{{dataProductDetail.productOriginalPrice}}</span></h1> 
+                                        <h3> {{dataProductDetail.productDate}} </h3> 
+                                        <br>
+                                        <h2>Contact</h2> 
+                                    </div>
+                                </div>
+                            </div>
+                            <form id="contact-form" action="#" method="POST">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-box user-icon mb-15">
+                                            <input type="text" name="name" placeholder="Your name">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-box email-icon mb-15">
+                                            <input type="text" name="email" placeholder="Email address">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-box message-icon mb-15">
+                                            <textarea name="message" id="message" placeholder="Comment"></textarea>
+                                        </div>
+                                        <div class="submit-info">
+                                            <button class="submit-btn2" type="submit">Send Message</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form> 
+                        </div>
+                    </div>
+                </div>
+                {% endfor %} 
+            </div>
+        </div>
+        <!--  Details End -->
+        <!-- listing-area Area End -->
+        <!--? Popular Locations Start 01-->
+        {% include 'shionhouse/popular_locations_start.html' %}
+        <!-- Popular Locations End -->
+
+        <!--? Services Area Start -->
+        {% include 'shionhouse/services_area_start.html' %} 
+        <!--? Services Area End -->
+    </main>
+
+    <!-- Footer Start-->
+    {% include 'shionhouse/footer_start.html' %}
+    <!-- Footer End-->
+    <!--? Search model Begin -->
+    {% include 'shionhouse/search_model_begin.html' %}
+    <!-- Search model end -->
+    <!-- Scroll Up -->
+    {% include 'shionhouse/scroll_up.html' %}
+    <!-- JS here -->
+    {% include 'shionhouse/js_here.html' %}
+
+</body>
+</html>

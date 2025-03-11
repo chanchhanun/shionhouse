@@ -1,0 +1,21 @@
+{% load static %} 
+collection2
+<div class="popular-product pt-50">
+    <div class="container-fluid">
+        <div class="row"> 
+            {% for dataPopularLocation in dataPopularLocations %}
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="single-product mb-50">
+                    <div class="location-img">
+                        <img src="{% static dataPopularLocation.popularLocationImage %}" alt="">
+                    </div>
+                    <div class="location-details">
+                        <p><a href="{% url 'product_details' 1 %}">{{dataPopularLocation.popularLocationCaption}}</a></p>
+                        <a href="{% url 'product_details' 1 %}" class="btn">Read More</a>
+                    </div>
+                </div>
+            </div> 
+            {% endfor %}
+        </div>
+    </div>
+</div>

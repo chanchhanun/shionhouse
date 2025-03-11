@@ -1,0 +1,21 @@
+{% load static %} 
+services_area 
+<div class="categories-area section-padding40 gray-bg">
+    <div class="container-fluid">
+        <div class="row"> 
+            {% for dataServiceArea in dataServiceAreas %}
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="single-cat mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                    <div class="cat-icon">
+                        <img src="{% static dataServiceArea.serviceAreaImage %}" alt="">
+                    </div>
+                    <div class="cat-cap">
+                        <h5>{{dataServiceArea.serviceAreaTile}}</h5> 
+                        <p>{{dataServiceArea.serviceAreaSubTitle}}</p>
+                    </div>
+                </div> 
+            </div> 
+            {% endfor %} 
+        </div>
+    </div>
+</div>
