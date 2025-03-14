@@ -39,7 +39,7 @@ def shop(request):
     dataProductCategory = ProductCategory.objects.all() 
     dataProductColor = ProductColor.objects.all() 
     dataProductPriceRange = ProductPriceRange.objects.all() 
-    dataMenu = Menu.objects.all() 
+    dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
     
@@ -63,7 +63,7 @@ def about(request):
     dataPopularProduct = PopularProduct.objects.all() 
     dataServiceArea = ServiceArea.objects.all() 
     dataFooterTitle = FooterTitle.objects.all() 
-    dataMenu = Menu.objects.all() 
+    dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
     
@@ -79,7 +79,7 @@ def about(request):
 
 # blog_details 
 def blog_details(request): 
-    dataMenu = Menu.objects.all() 
+    dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
     dataFooterTitle = FooterTitle.objects.all() 
@@ -95,7 +95,7 @@ def blog_details(request):
 # blog 
 def blog(request): 
     dataFooterTitle = FooterTitle.objects.all() 
-    dataMenu = Menu.objects.all() 
+    dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
     
@@ -109,7 +109,7 @@ def blog(request):
 
 # contact 
 def contact(request): 
-    dataMenu = Menu.objects.all() 
+    dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
     
@@ -125,7 +125,7 @@ def contact(request):
 
 # elements 
 def elements(request): 
-    dataMenu = Menu.objects.all() 
+    dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
     
@@ -151,7 +151,7 @@ def product_details(request,ProductId):
     dataPopularLocation = PopularLocation.objects.all() 
     dataServiceArea = ServiceArea.objects.all() 
     dataFooterTitle = FooterTitle.objects.all() 
-    dataMenu = Menu.objects.all() 
+    dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
     
