@@ -1,5 +1,6 @@
 from django.shortcuts import render,HttpResponse 
 from .models import * 
+from django.db.models import Count 
 
 # Create your views here.
 def index(request): 
@@ -10,7 +11,7 @@ def index(request):
     dataPopularLocation = PopularLocation.objects.all() 
     dataServiceArea = ServiceArea.objects.all() 
     dataFooterTitle = FooterTitle.objects.all() 
-    dataMenu = Menu.objects.all() 
+    dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
     

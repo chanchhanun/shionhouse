@@ -12,7 +12,7 @@ class Menu(models.Model):
 class SubMenu(models.Model): 
     menuName = models.CharField(max_length=200,null=True) 
     url = models.CharField(max_length=200,null=True) 
-    menuId= models.ForeignKey(Menu,on_delete=models.CASCADE,null=True) 
+    menuId= models.ForeignKey(Menu,on_delete=models.CASCADE,null=True,related_name='submenus') 
     def __str__(self):
         return f'{self.menuId.menuName} -> {self.menuName}' 
 
@@ -116,3 +116,4 @@ class FooterTitle(models.Model):
     linkSub3 = models.CharField(max_length=200,null=True) 
     def __str__(self):
         return f'{self.title} | {self.SubTitle1} | {self.linkSub1} | {self.SubTitle2} | {self.linkSub2} | {self.SubTitle3} | {self.linkSub3}' 
+

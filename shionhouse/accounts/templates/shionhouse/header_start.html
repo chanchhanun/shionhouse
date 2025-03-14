@@ -15,11 +15,13 @@
                             <nav>
                                 <ul id="navigation">
                                     {% for dataMenu in dataMenus %} 
-                                    <li><a href="{% url dataMenu.url %}">{{dataMenu.menuName}}</a> 
-                                        <ul class="submenu"> 
+                                    <li><a href="{% url dataMenu.url %}">{{dataMenu.menuName}}</a>
+                                        <ul class=" {% if dataMenu.sub_count > 0 %}
+                                                        submenu
+                                                    {% endif %} "> 
                                         {% for dataSubMenu in dataSubMenus %} 
                                             {% if dataMenu.id == dataSubMenu.menuId_id %} 
-                                                <li><a href="{% url dataMenu.url %}">{{dataSubMenu.menuName}}</a></li> 
+                                            <li><a href="{% url dataMenu.url %}">{{dataSubMenu.menuName}}</a></li> 
                                             {% endif %} 
                                         {% endfor %} 
                                         </ul>
