@@ -99,6 +99,23 @@ class AdminProductPriceRange(admin.ModelAdmin):
     search_fields = [
         'priceRange', 
     ]
+                                        
+class AdminSocialMediaLink(admin.ModelAdmin):
+    list_display = [
+        'twitter', 
+        'facebook', 
+        'pinterest', 
+    ] 
+    list_filter = [
+        'twitter', 
+        'facebook', 
+        'pinterest', 
+    ] 
+    search_fields = [
+         'twitter', 
+        'facebook', 
+        'pinterest', 
+    ]
 
 class AdminProduct(admin.ModelAdmin):
     def image_preview(self,obj):
@@ -232,6 +249,22 @@ class AdminServiceArea(admin.ModelAdmin):
     search_fields = ["id","serviceAreaTile","serviceAreaSubTitle"] 
     image_preview.short_discription = "Image Preview" 
     readonly_fields = ["image_preview"] 
+    
+class AdminAboutTitle(admin.ModelAdmin): 
+    def image_preview(self,obj):
+        if obj.popularLocationImage:
+            return format_html('<img src="/static{}" width="100" height="auto" >',obj.popularLocationImage.url)
+        return "No Image" 
+    list_display = [ 
+        "image_preview", 
+        'popularLocationImage', 
+        "title", 
+        "subTitle", 
+        'id', 
+    ] 
+    search_fields = ["id","title","subTitle"] 
+    image_preview.short_discription = "Image Preview" 
+    readonly_fields = ["image_preview"] 
 
 admin.site.register(ProductType,AdminProductType)
 admin.site.register(ProductCategory,AdminProductCategory)
@@ -249,3 +282,5 @@ admin.site.register(FooterTitle,AdminFooterTitle)
 admin.site.register(Menu,AdminMenu) 
 admin.site.register(SubMenu) 
 admin.site.register(Sub2Menu) 
+admin.site.register(AboutTitle,AdminAboutTitle) 
+admin.site.register(SocialMediaLink,AdminSocialMediaLink) 

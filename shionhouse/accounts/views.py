@@ -14,6 +14,7 @@ def index(request):
     dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
+    dataSocialMediaLink = SocialMediaLink.objects.all() 
     
     context = {
         'dataSlideImages' : dataSlideImage,
@@ -26,6 +27,8 @@ def index(request):
         'dataMenus' : dataMenu, 
         'dataSubMenus' : dataSubMenu, 
         'dataSub2Menus' : dataSub2Menu, 
+        'dataSocialMediaLinks' : dataSocialMediaLink, 
+        
     }
     return render(request,"shionhouse/index.html",context) 
 
@@ -42,7 +45,7 @@ def shop(request):
     dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
-    
+    dataSocialMediaLink = SocialMediaLink.objects.all() 
     context = {
         'dataProducts' : dataProduct, 
         'dataPopularProducts' : dataPopularProduct, 
@@ -55,6 +58,7 @@ def shop(request):
         'dataMenus' : dataMenu, 
         'dataSubMenus' : dataSubMenu, 
         'dataSub2Menus' : dataSub2Menu, 
+        'dataSocialMediaLinks' : dataSocialMediaLink, 
     }
     return render(request,'shionhouse/shop.html',context) 
 
@@ -66,6 +70,8 @@ def about(request):
     dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
+    dataAboutTitle = AboutTitle.objects.all() 
+    dataSocialMediaLink = SocialMediaLink.objects.all() 
     
     context = {
         'dataPopularProducts' : dataPopularProduct, 
@@ -74,6 +80,8 @@ def about(request):
         'dataMenus' : dataMenu, 
         'dataSubMenus' : dataSubMenu, 
         'dataSub2Menus' : dataSub2Menu, 
+        'dataSocialMediaLinks' : dataSocialMediaLink, 
+        'dataAboutTitles' : dataAboutTitle, 
     }
     return render(request,'shionhouse/about.html',context) 
 
@@ -83,12 +91,14 @@ def blog_details(request):
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
     dataFooterTitle = FooterTitle.objects.all() 
+    dataSocialMediaLink = SocialMediaLink.objects.all() 
     
     context = {
         'dataFooterTitles' : dataFooterTitle, 
         'dataMenus' : dataMenu, 
         'dataSubMenus' : dataSubMenu, 
         'dataSub2Menus' : dataSub2Menu, 
+        'dataSocialMediaLinks' : dataSocialMediaLink, 
     }
     return render(request,'shionhouse/blog_details.html',context) 
 
@@ -98,12 +108,13 @@ def blog(request):
     dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
-    
+    dataSocialMediaLink = SocialMediaLink.objects.all() 
     context = {
         'dataFooterTitles' : dataFooterTitle, 
         'dataMenus' : dataMenu, 
         'dataSubMenus' : dataSubMenu, 
         'dataSub2Menus' : dataSub2Menu, 
+        'dataSocialMediaLinks' : dataSocialMediaLink, 
     }
     return render(request,'shionhouse/blog.html',context) 
 
@@ -112,7 +123,7 @@ def contact(request):
     dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
-    
+    dataSocialMediaLink = SocialMediaLink.objects.all() 
     dataFooterTitle = FooterTitle.objects.all() 
     
     context = {
@@ -120,6 +131,7 @@ def contact(request):
         'dataMenus' : dataMenu, 
         'dataSubMenus' : dataSubMenu, 
         'dataSub2Menus' : dataSub2Menu, 
+        'dataSocialMediaLinks' : dataSocialMediaLink, 
     }
     return render(request,'shionhouse/contact.html',context) 
 
@@ -128,7 +140,7 @@ def elements(request):
     dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
-    
+    dataSocialMediaLink = SocialMediaLink.objects.all() 
     dataFooterTitle = FooterTitle.objects.all() 
     
     context = {
@@ -136,6 +148,7 @@ def elements(request):
         'dataMenus' : dataMenu, 
         'dataSubMenus' : dataSubMenu, 
         'dataSub2Menus' : dataSub2Menu, 
+        'dataSocialMediaLinks' : dataSocialMediaLink, 
     }
     return render(request,'shionhouse/elements.html',context) 
 
@@ -154,7 +167,7 @@ def product_details(request,ProductId):
     dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
-    
+    dataSocialMediaLink = SocialMediaLink.objects.all() 
     
     context = {
         'dataProductIds' : dataProductId, 
@@ -166,5 +179,6 @@ def product_details(request,ProductId):
         'dataMenus' : dataMenu, 
         'dataSubMenus' : dataSubMenu, 
         'dataSub2Menus' : dataSub2Menu, 
+        'dataSocialMediaLinks' : dataSocialMediaLink, 
     }
     return render(request,'shionhouse/product_details.html',context) 

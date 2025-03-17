@@ -117,3 +117,18 @@ class FooterTitle(models.Model):
     def __str__(self):
         return f'{self.title} | {self.SubTitle1} | {self.linkSub1} | {self.SubTitle2} | {self.linkSub2} | {self.SubTitle3} | {self.linkSub3}' 
 
+class AboutTitle(models.Model): 
+    title = models.CharField(max_length=200,null=True) 
+    subTitle = models.CharField(max_length=200,null=True) 
+    popularLocationImage = models.ImageField(upload_to='about/',null=True,blank=True) 
+    def __str__(self):
+        return f'{self.title} | {self.subTitle} | {self.popularLocationImage}' 
+
+class SocialMediaLink(models.Model): 
+    twitter = models.CharField(max_length=200,null=True) 
+    facebook = models.CharField(max_length=200,null=True) 
+    pinterest = models.CharField(max_length=200,null=True) 
+    def __str__(self):
+        return f'{self.twitter} | {self.facebook} | {self.pinterest}' 
+
+
