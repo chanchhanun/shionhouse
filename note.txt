@@ -1,0 +1,15 @@
+Assign user with Permission 
+
+Create Group: 
+	IT => For Add 
+	Account => For View 
+	Marketing => For Update and Delete 
+
+Create User: 
+	User1 => Password: user1999999
+	User2 => Password: user2999999
+	User3 => Password: user3999999 
+
+    NUN => Password: nun69696969 
+    Chetra => Password: tra69696969 
+

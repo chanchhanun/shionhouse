@@ -13,7 +13,7 @@ class SubMenu(models.Model):
     menuName = models.CharField(max_length=200,null=True) 
     url = models.CharField(max_length=200,null=True) 
     menuId= models.ForeignKey(Menu,on_delete=models.CASCADE,null=True,related_name='submenus') 
-    def __str__(self):
+    def __str__(self): 
         return f'{self.menuId.menuName} -> {self.menuName}' 
 
 class Sub2Menu(models.Model): 
