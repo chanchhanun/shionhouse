@@ -161,6 +161,59 @@ class AdminProductImageDetail(admin.ModelAdmin):
     image_preview.short_discription = "Image Preview" 
     readonly_fields = ["image_preview"] 
     
+class AdminMediaBodyContact(admin.ModelAdmin): 
+    list_display = [ 
+        "id", 
+        "houseName", 
+        "houseLocation", 
+        "phoneNumber", 
+        "durationContact", 
+        "email", 
+        "emailTitle", 
+    ] 
+    list_filter = [
+        "houseName", 
+        "houseLocation", 
+        "phoneNumber", 
+        "durationContact", 
+        "email", 
+        "emailTitle", 
+    ] 
+    search_fields = [ 
+        "id", 
+         "houseName", 
+        "houseLocation", 
+        "phoneNumber", 
+        "durationContact", 
+        "email", 
+        "emailTitle", 
+    ] 
+    
+class AdminBlogItemDetails(admin.ModelAdmin): 
+    def image_preview(self,obj):
+        if obj.blogItemImage:
+            return format_html('<img src="/static{}" width="100" height="auto" >',obj.blogItemImage.url)
+        return "No Image" 
+
+    list_display = [ 
+        "id", 
+        "blogItemId", 
+        "discription", 
+        "blogTitleDetails", 
+    ] 
+    list_filter = [
+        "blogItemId", 
+        "discription", 
+        "blogTitleDetails", 
+    ] 
+    search_fields = [ 
+        "blogItemId", 
+        "discription", 
+        "blogTitleDetails", 
+    ] 
+    image_preview.short_discription = "Image Preview" 
+
+    
 class AdminStatus(admin.ModelAdmin): 
     list_display = [ 
         "id", 
@@ -186,6 +239,19 @@ class AdminSlider(admin.ModelAdmin):
         'sliderImage', 
     ] 
     search_fields = ["id","heroCaption"] 
+    image_preview.short_discription = "Image Preview" 
+    readonly_fields = ["image_preview"] 
+    
+class AdminContactWelcomeUs(admin.ModelAdmin):
+    def image_preview(self,obj):
+        if obj.welcomeUsImageURL:
+            return format_html('<img src="/static{}" width="100" height="auto" >',obj.welcomeUsImageURL.url)
+        return "No Image" 
+    list_display = [ 
+        "image_preview", 
+        'id', 
+    ] 
+    search_fields = ["id"] 
     image_preview.short_discription = "Image Preview" 
     readonly_fields = ["image_preview"] 
 
@@ -265,6 +331,25 @@ class AdminAboutTitle(admin.ModelAdmin):
     search_fields = ["id","title","subTitle"] 
     image_preview.short_discription = "Image Preview" 
     readonly_fields = ["image_preview"] 
+    
+class AdminBlogItem(admin.ModelAdmin): 
+    def image_preview(self,obj):
+        if obj.blogItemImage:
+            return format_html('<img src="/static{}" width="100" height="auto" >',obj.blogItemImage.url)
+        return "No Image" 
+    list_display = [ 
+        "image_preview", 
+        'blogItemImage', 
+        "dayDate", 
+        "monthDate", 
+        "infoTitle", 
+        "title", 
+        "subTitle", 
+        'id', 
+    ] 
+    search_fields = ["id","title","subTitle","dayDate","monthDate","infoTitile"] 
+    image_preview.short_discription = "Image Preview" 
+    readonly_fields = ["image_preview"] 
 
 admin.site.register(ProductType,AdminProductType)
 admin.site.register(ProductCategory,AdminProductCategory)
@@ -284,3 +369,7 @@ admin.site.register(SubMenu)
 admin.site.register(Sub2Menu) 
 admin.site.register(AboutTitle,AdminAboutTitle) 
 admin.site.register(SocialMediaLink,AdminSocialMediaLink) 
+admin.site.register(BlogItem,AdminBlogItem) 
+admin.site.register(BlogItemDetails,AdminBlogItemDetails) 
+admin.site.register(MediaBodyContact,AdminMediaBodyContact) 
+admin.site.register(ContactWelcomeUs,AdminContactWelcomeUs) 

@@ -86,12 +86,15 @@ def about(request):
     return render(request,'shionhouse/about.html',context) 
 
 # blog_details 
-def blog_details(request): 
+def blog_details(request,BlogId): 
     dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
     dataFooterTitle = FooterTitle.objects.all() 
     dataSocialMediaLink = SocialMediaLink.objects.all() 
+    dataProductCategory = ProductCategory.objects.all() 
+    dataBlogItem = BlogItem.objects.all() 
+    dataBlogItemDetails = BlogItemDetails.objects.filter(id=BlogId)
     
     context = {
         'dataFooterTitles' : dataFooterTitle, 
@@ -99,6 +102,9 @@ def blog_details(request):
         'dataSubMenus' : dataSubMenu, 
         'dataSub2Menus' : dataSub2Menu, 
         'dataSocialMediaLinks' : dataSocialMediaLink, 
+        'dataProductCategorys' : dataProductCategory, 
+        'dataBlogItems' : dataBlogItem, 
+        'dataBlogItemDetailss' : dataBlogItemDetails, 
     }
     return render(request,'shionhouse/blog_details.html',context) 
 
@@ -109,12 +115,17 @@ def blog(request):
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
     dataSocialMediaLink = SocialMediaLink.objects.all() 
+    dataBlogItem = BlogItem.objects.all() 
+    dataProductCategory = ProductCategory.objects.all() 
+    
     context = {
         'dataFooterTitles' : dataFooterTitle, 
         'dataMenus' : dataMenu, 
         'dataSubMenus' : dataSubMenu, 
         'dataSub2Menus' : dataSub2Menu, 
         'dataSocialMediaLinks' : dataSocialMediaLink, 
+        'dataBlogItems' : dataBlogItem, 
+        'dataProductCategorys' : dataProductCategory, 
     }
     return render(request,'shionhouse/blog.html',context) 
 
@@ -125,6 +136,8 @@ def contact(request):
     dataSub2Menu = Sub2Menu.objects.all() 
     dataSocialMediaLink = SocialMediaLink.objects.all() 
     dataFooterTitle = FooterTitle.objects.all() 
+    dataMediaBodyContact = MediaBodyContact.objects.all() 
+    dataContactWelcomeUs = ContactWelcomeUs.objects.all() 
     
     context = {
         'dataFooterTitles' : dataFooterTitle, 
@@ -132,6 +145,8 @@ def contact(request):
         'dataSubMenus' : dataSubMenu, 
         'dataSub2Menus' : dataSub2Menu, 
         'dataSocialMediaLinks' : dataSocialMediaLink, 
+        'dataMediaBodyContacts' : dataMediaBodyContact, 
+        'dataContactWelcomeUss' : dataContactWelcomeUs, 
     }
     return render(request,'shionhouse/contact.html',context) 
 

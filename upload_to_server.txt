@@ -1,0 +1,39 @@
+leavchumsopanha@gmail.com
+
+1- https://www.pythonanywhere.com
+
+2- Web Menu => Add a new web app
+
+3- Next => Select Django => Python 3.10 (Django 4.0.6) => Next => 
+
+4- Can Custom Project Name and Directory => Next =>
+
+5-Can Test Configuration for TonghengCute.pythonanywhere.com
+
+6- Files Menu => Upload a file => Browse your zip file project =>
+
+7- Consoles Menu => Other: Bash =>
+
+8- ls => unzip YourProjectName.zip
+
+9- Files Menu => in Directories Click Your Project => Copy: /home/Tongheng/YourProjectName
+
+10- Web Menu => Code: => Source code: /home/Tongheng/YourProjectName => OK
+
+11- Web Menu => Code: => WSGI configuration file:/var/www/tongheng_pythonanywhere_com_wsgi.py => 
+
+12- project_home = '/home/Tongheng/YourProjectName' => 
+
+13- os.environ['DJANGO_SETTINGS_MODULE'] = 'YourProjectName.settings' => Save
+
+14- Files Menu => in Directories Click Your YourProjectName => YourProjectName =>
+
+15- Files => open settings.py => 
+
+16-ALLOWED_HOSTS = ['tonghengCute.pythonanywhere.com'] =>
+
+17- Web Menu => Reload: Click Reload tonghengCute.pythonanywhere.com =>
+
+18- Refresh Web Page => Is Done
+
+

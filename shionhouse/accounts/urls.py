@@ -11,4 +11,6 @@ urlpatterns = [
     path('elements/',views.elements,name="elements"), 
     path('main/',views.main,name="main"), 
     path('product_details/<int:ProductId>/',views.product_details,name="product_details"), 
+    path('blog_details/<int:BlogId>/',views.blog_details,name="blog_details"), 
 ] 
+

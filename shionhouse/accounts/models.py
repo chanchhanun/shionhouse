@@ -74,6 +74,11 @@ class ProductImageDetail(models.Model):
     productImageDate = models.DateField(auto_now_add=True,null=True) 
     def __str__(self): 
         return f'{self.productImageId} | {self.productImageURL}' 
+
+class ContactWelcomeUs(models.Model): 
+    welcomeUsImageURL = models.ImageField(upload_to='contact_welcome_us/',null=True,blank=True) 
+    def __str__(self): 
+        return f'{self.welcomeUsImageURL}' 
     
 class SliderImage(models.Model): 
     sliderImage = models.ImageField(upload_to='slider_images/',null=True,blank=True) 
@@ -131,4 +136,50 @@ class SocialMediaLink(models.Model):
     def __str__(self):
         return f'{self.twitter} | {self.facebook} | {self.pinterest}' 
 
+class BlogItem(models.Model): 
+    blogItemImage = models.ImageField(upload_to='blog_item_image/',null=True,blank=True) 
+    dayDate = models.CharField(max_length=200,null=True)  
+    monthDate = models.CharField(max_length=200,null=True) 
+    title = models.CharField(max_length=200,null=True)  
+    subTitle = models.CharField(max_length=200,null=True) 
+    infoTitle = models.CharField(max_length=200,null=True) 
+    def __str__(self):
+        return f'{self.title} | {self.blogItemImage}' 
+
+
+class BlogItemDetails(models.Model): 
+    blogItemId = models.ForeignKey(BlogItem, on_delete=models.CASCADE, null=True)
+    discription = models.CharField(max_length=200, null=True) 
+    blogTitleDetails = models.CharField(max_length=200, null=True) 
+
+    @property
+    def blogItemImage(self):
+        return self.blogItemId.blogItemImage if self.blogItemId else None
+
+    @property
+    def title(self):
+        return self.blogItemId.title if self.blogItemId else None
+
+    @property
+    def subTitle(self):
+        return self.blogItemId.subTitle if self.blogItemId else None
+
+    @property
+    def infoTitle(self):
+        return self.blogItemId.infoTitle if self.blogItemId else None
+    
+    def __str__(self):
+        return f'{self.blogItemId} | {self.discription} | {self.blogTitleDetails}'
+
+
+
+class MediaBodyContact(models.Model): 
+    houseName = models.CharField(max_length=200,null=True) 
+    houseLocation = models.CharField(max_length=200,null=True) 
+    phoneNumber = models.CharField(max_length=200,null=True) 
+    durationContact = models.CharField(max_length=200,null=True) 
+    email = models.CharField(max_length=200,null=True) 
+    emailTitle = models.CharField(max_length=200,null=True) 
+    def __str__(self):
+        return f'{self.houseLocation} | {self.houseLocation} | {self.phoneNumber} | {self.durationContact} | {self.email} | {self.emailTitle} ' 
 
