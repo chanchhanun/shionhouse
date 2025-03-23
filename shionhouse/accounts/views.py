@@ -165,6 +165,9 @@ def contact(request):
     }
     return render(request,'shionhouse/contact.html',context) 
 
+def routeNotFound(request,anything): 
+    return render(request,'shionhouse/404.html')
+
 # elements 
 def elements(request): 
     dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
