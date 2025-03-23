@@ -10,6 +10,7 @@ def index(request):
     dataCollection= Collection.objects.all() 
     dataPopularLocation = PopularLocation.objects.all() 
     dataServiceArea = ServiceArea.objects.all() 
+    dataLogoUpdate = LogoUpdate.objects.all() 
     dataFooterTitle = FooterTitle.objects.all() 
     dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
@@ -23,6 +24,7 @@ def index(request):
         'dataCollections' : dataCollection, 
         'dataPopularLocations' : dataPopularLocation, 
         'dataServiceAreas' : dataServiceArea, 
+        'dataLogoUpdates' : dataLogoUpdate, 
         'dataFooterTitles' : dataFooterTitle, 
         'dataMenus' : dataMenu, 
         'dataSubMenus' : dataSubMenu, 
@@ -37,6 +39,7 @@ def shop(request):
     dataProduct = Product.objects.all() 
     dataPopularProduct = PopularProduct.objects.all() 
     dataServiceArea = ServiceArea.objects.all() 
+    dataLogoUpdate = LogoUpdate.objects.all() 
     dataFooterTitle = FooterTitle.objects.all() 
     dataProductType = ProductType.objects.all() 
     dataProductCategory = ProductCategory.objects.all() 
@@ -46,10 +49,12 @@ def shop(request):
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
     dataSocialMediaLink = SocialMediaLink.objects.all() 
+ 
     context = {
         'dataProducts' : dataProduct, 
         'dataPopularProducts' : dataPopularProduct, 
         'dataServiceAreas' : dataServiceArea, 
+        'dataLogoUpdates' : dataLogoUpdate, 
         'dataFooterTitles' : dataFooterTitle, 
         'dataProductTypes' : dataProductType, 
         'dataProductCategorys' : dataProductCategory, 
@@ -66,6 +71,7 @@ def shop(request):
 def about(request): 
     dataPopularProduct = PopularProduct.objects.all() 
     dataServiceArea = ServiceArea.objects.all() 
+    dataLogoUpdate = LogoUpdate.objects.all() 
     dataFooterTitle = FooterTitle.objects.all() 
     dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
@@ -73,9 +79,12 @@ def about(request):
     dataAboutTitle = AboutTitle.objects.all() 
     dataSocialMediaLink = SocialMediaLink.objects.all() 
     
+  
+    
     context = {
         'dataPopularProducts' : dataPopularProduct, 
         'dataServiceAreas' : dataServiceArea, 
+        'dataLogoUpdates' : dataLogoUpdate, 
         'dataFooterTitles' : dataFooterTitle, 
         'dataMenus' : dataMenu, 
         'dataSubMenus' : dataSubMenu, 
@@ -94,7 +103,8 @@ def blog_details(request,BlogId):
     dataSocialMediaLink = SocialMediaLink.objects.all() 
     dataProductCategory = ProductCategory.objects.all() 
     dataBlogItem = BlogItem.objects.all() 
-    dataBlogItemDetails = BlogItemDetails.objects.filter(id=BlogId)
+    dataBlogItemDetails = BlogItemDetails.objects.filter(id=BlogId) 
+    dataLogoUpdate = LogoUpdate.objects.all() 
     
     context = {
         'dataFooterTitles' : dataFooterTitle, 
@@ -105,6 +115,7 @@ def blog_details(request,BlogId):
         'dataProductCategorys' : dataProductCategory, 
         'dataBlogItems' : dataBlogItem, 
         'dataBlogItemDetailss' : dataBlogItemDetails, 
+        'dataLogoUpdates' : dataLogoUpdate, 
     }
     return render(request,'shionhouse/blog_details.html',context) 
 
@@ -117,6 +128,7 @@ def blog(request):
     dataSocialMediaLink = SocialMediaLink.objects.all() 
     dataBlogItem = BlogItem.objects.all() 
     dataProductCategory = ProductCategory.objects.all() 
+    dataLogoUpdate = LogoUpdate.objects.all() 
     
     context = {
         'dataFooterTitles' : dataFooterTitle, 
@@ -126,6 +138,7 @@ def blog(request):
         'dataSocialMediaLinks' : dataSocialMediaLink, 
         'dataBlogItems' : dataBlogItem, 
         'dataProductCategorys' : dataProductCategory, 
+        'dataLogoUpdates' : dataLogoUpdate, 
     }
     return render(request,'shionhouse/blog.html',context) 
 
@@ -138,6 +151,7 @@ def contact(request):
     dataFooterTitle = FooterTitle.objects.all() 
     dataMediaBodyContact = MediaBodyContact.objects.all() 
     dataContactWelcomeUs = ContactWelcomeUs.objects.all() 
+    dataLogoUpdate = LogoUpdate.objects.all() 
     
     context = {
         'dataFooterTitles' : dataFooterTitle, 
@@ -147,6 +161,7 @@ def contact(request):
         'dataSocialMediaLinks' : dataSocialMediaLink, 
         'dataMediaBodyContacts' : dataMediaBodyContact, 
         'dataContactWelcomeUss' : dataContactWelcomeUs, 
+        'dataLogoUpdates' : dataLogoUpdate, 
     }
     return render(request,'shionhouse/contact.html',context) 
 
@@ -157,6 +172,7 @@ def elements(request):
     dataSub2Menu = Sub2Menu.objects.all() 
     dataSocialMediaLink = SocialMediaLink.objects.all() 
     dataFooterTitle = FooterTitle.objects.all() 
+    dataLogoUpdate = LogoUpdate.objects.all() 
     
     context = {
         'dataFooterTitles' : dataFooterTitle, 
@@ -164,6 +180,7 @@ def elements(request):
         'dataSubMenus' : dataSubMenu, 
         'dataSub2Menus' : dataSub2Menu, 
         'dataSocialMediaLinks' : dataSocialMediaLink, 
+        'dataLogoUpdates' : dataLogoUpdate, 
     }
     return render(request,'shionhouse/elements.html',context) 
 
@@ -178,6 +195,7 @@ def product_details(request,ProductId):
     dataProductDetail = Product.objects.filter(id=ProductId) 
     dataPopularLocation = PopularLocation.objects.all() 
     dataServiceArea = ServiceArea.objects.all() 
+    dataLogoUpdate = LogoUpdate.objects.all() 
     dataFooterTitle = FooterTitle.objects.all() 
     dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
@@ -190,6 +208,7 @@ def product_details(request,ProductId):
         'dataImages' : dataImage, 
         'dataPopularLocations' : dataPopularLocation, 
         'dataServiceAreas' : dataServiceArea, 
+        'dataLogoUpdates' : dataLogoUpdate, 
         'dataFooterTitles' : dataFooterTitle, 
         'dataMenus' : dataMenu, 
         'dataSubMenus' : dataSubMenu, 

@@ -1,4 +1,8 @@
 from django.db import models 
+from import_export import resources
+
+
+
 
 # Create your models here. 
 
@@ -34,12 +38,17 @@ class ProductType(models.Model):
     productTypeDate = models.DateField(auto_now_add=True,null=True)
     def __str__(self):
         return f'{self.types}'
-    
+        
 class ProductCategory(models.Model):  
     category = models.CharField(max_length=200,null=True)
     productCategoryDate = models.DateField(auto_now_add=True,null=True)
     def __str__(self):
-        return f'{self.category}'
+        return f'{self.category}' 
+
+class ExportProductCategory(resources.ModelResource):
+    class Meta:
+        model = ProductCategory
+        fields = ('category','productCategoryDate') 
     
 class ProductColor(models.Model):  
     color = models.CharField(max_length=200,null=True)
@@ -53,7 +62,7 @@ class ProductPriceRange(models.Model):
     def __str__(self):
         return f'{self.priceRange}' 
 
-class Product(models.Model):
+class Product(models.Model): 
     productName = models.CharField(max_length=200,null=True) 
     productTypeId = models.ForeignKey(ProductType,on_delete=models.CASCADE,null=True) 
     productCategoryId = models.ForeignKey(ProductCategory,on_delete=models.CASCADE,null=True) 
@@ -67,7 +76,7 @@ class Product(models.Model):
     productDate = models.DateField(auto_now_add=True,null=True) 
     def __str__(self):
         return f'{self.productName} | {self.id}' 
-
+ 
 class ProductImageDetail(models.Model): 
     productImageId = models.ForeignKey(Product,on_delete=models.CASCADE,null=True) 
     productImageURL = models.ImageField(upload_to='product_image_detial/',null=True,blank=True) 
@@ -183,3 +192,8 @@ class MediaBodyContact(models.Model):
     def __str__(self):
         return f'{self.houseLocation} | {self.houseLocation} | {self.phoneNumber} | {self.durationContact} | {self.email} | {self.emailTitle} ' 
 
+class LogoUpdate(models.Model): 
+    logoBlack = models.ImageField(upload_to="logo/",null=True,blank=True) 
+    logoWhite = models.ImageField(upload_to="logo/",null=True,blank=True) 
+    def __str__(self):
+        return f'{self.logoBlack} | {self.logoWhite}' 

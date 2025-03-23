@@ -8,9 +8,12 @@
                       <div class="single-footer-caption mb-30">
                         <!-- logo -->
                         <div class="footer-logo mb-35">
-                          <a href="{% url 'index' %}"
-                            ><img src="{% static 'assets/img/logo/logo2_footer.png' %}" alt=""
-                          /></a>
+                          <a href="{% url 'index' %}" 
+                            > 
+                            {% for dataLogoUpdate in dataLogoUpdates %}
+                            <img src="{% static dataLogoUpdate.logoWhite %}"  alt="" /> 
+                            {% endfor %}
+                        </a>
                         </div>
                         <div class="footer-tittle">
                           <div class="footer-pera">

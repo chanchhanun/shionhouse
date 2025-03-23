@@ -1,0 +1,28 @@
+
+pip install django-import-export
+
+
+from import_export import resources
+from import_export.admin import ExportActionMixin 
+
+
+'import_export'
+
+
+class ExportCategory(resources.ModelResource):
+    class Meta:
+        model = Category
+        fields = ('categoryName','CategoryImage') 
+
+
+class CategoryAdmin(ExportActionMixin, admin.ModelAdmin):
+    list_display = ["id","CategoryName","CategoryImage"]
+    list_filter = ["CategoryName","id"]
+    search_fields = ["CategoryName"]
+
+    resource_class = ExpCategory
+
+    def __init__(self, model, admin_site):
+        super().__init__(model, admin_site)
+        self.opts.verbose_name_plural="Manage Categories" 
+
