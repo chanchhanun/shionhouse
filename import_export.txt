@@ -1,3 +1,5 @@
+// done 
+
 
 pip install django-import-export
 
@@ -25,4 +27,3 @@ class CategoryAdmin(ExportActionMixin, admin.ModelAdmin):
     def __init__(self, model, admin_site):
         super().__init__(model, admin_site)
         self.opts.verbose_name_plural="Manage Categories" 
-

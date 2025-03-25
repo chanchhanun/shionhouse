@@ -1,8 +1,4 @@
 from django.db import models 
-from import_export import resources
-
-
-
 
 # Create your models here. 
 
@@ -45,10 +41,7 @@ class ProductCategory(models.Model):
     def __str__(self):
         return f'{self.category}' 
 
-class ExportProductCategory(resources.ModelResource):
-    class Meta:
-        model = ProductCategory
-        fields = ('category','productCategoryDate') 
+
     
 class ProductColor(models.Model):  
     color = models.CharField(max_length=200,null=True)
@@ -76,6 +69,8 @@ class Product(models.Model):
     productDate = models.DateField(auto_now_add=True,null=True) 
     def __str__(self):
         return f'{self.productName} | {self.id}' 
+
+
  
 class ProductImageDetail(models.Model): 
     productImageId = models.ForeignKey(Product,on_delete=models.CASCADE,null=True) 

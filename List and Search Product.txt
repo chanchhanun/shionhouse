@@ -1,0 +1,145 @@
+List and Search Product
+
+----------------------------------
+
+Step 1: Create a Django Project
+
+python -m virtualenv env 
+
+pip install django
+
+django-admin startproject product_project
+cd product_project
+django-admin startapp product_app
+
+
+Step 2: Configure Django Settings
+
+INSTALLED_APPS = [
+
+    'product_app',  
+]
+
+
+Step 3: Define the Product Model
+
+from django.db import models
+
+class Product(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.TextField(blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return self.name
+
+Run migrations:
+
+python manage.py makemigrations
+python manage.py migrate
+
+
+
+Step 4: Register Product Model in Admin Panel
+
+from django.contrib import admin
+from .models import Product
+
+admin.site.register(Product)
+
+
+python manage.py createsuperuser
+
+Go to /admin/, and add some products
+
+Step 5: Create Views for Listing and Searching Products
+
+from django.shortcuts import render
+from django.http import JsonResponse
+from .models import Product
+
+def product_list(request):
+    products = Product.objects.all()
+    return render(request, 'products.html', {'products': products})
+
+def search_products(request):
+    query = request.GET.get('query', '')
+    products = Product.objects.filter(name__icontains=query).values('id', 'name', 'price')
+    return JsonResponse(list(products), safe=False)
+
+
+
+Step 6: Configure URLs
+
+from django.urls import path
+from .views import product_list, search_products
+
+urlpatterns = [
+    path('', product_list, name='product_list'),
+    path('search/', search_products, name='search_products'),
+]
+
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('product_app.urls')),
+]
+
+
+Step 7: Create the Searchable Product List Template
+Create product_app/templates/products.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <h1>Product List</h1>
+
+    <label for="search">Search Product:</label>
+    <input type="text" id="search" placeholder="Enter product name...">
+
+    <ul id="product-list">
+        {% for product in products %}
+            <li>{{ product.name }} - ${{ product.price }}</li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+                var query = $(this).val();
+                $.ajax({
+                    url: "{% url 'search_products' %}",
+                    data: {'query': query},
+                    success: function(data){
+                        var productList = $('#product-list');
+                        productList.empty();
+                        if (data.length === 0) {
+                            productList.append('<li>No products found</li>');
+                        } else {
+                            data.forEach(function(product){
+                                productList.append('<li>' + product.name + ' - $' + product.price + '</li>');
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+
+Step 8: Run the Project
+
+python manage.py runserver

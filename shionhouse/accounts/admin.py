@@ -1,6 +1,7 @@
 from django.contrib import admin 
 from .models import * 
 from django.utils.html import format_html 
+from import_export import resources
 from import_export.admin import ExportActionMixin 
 
 admin.site.site_header = "NUNTRA FASHION"
@@ -87,7 +88,16 @@ class AdminProductType(admin.ModelAdmin):
     def __init__(self, model, admin_site):
         super().__init__(model, admin_site)
         self.opts.verbose_name_plural="4. Product Type" 
-                                        
+
+class ExportProductCategory(resources.ModelResource):
+    class Meta:
+        model = ProductCategory
+        fields = (
+            'id', 
+            'category',
+            'productCategoryDate',
+            ) 
+        
 class AdminProductCategory(ExportActionMixin,admin.ModelAdmin):
     list_display = [
         'category', 
@@ -168,7 +178,26 @@ class AdminSocialMediaLink(admin.ModelAdmin):
         super().__init__(model, admin_site)
         self.opts.verbose_name_plural="1. Socail Media Link " 
 
-class AdminProduct(admin.ModelAdmin):
+class ExportProduct(resources.ModelResource):
+    class Meta:
+        model = Product 
+        fields = (
+                    'id', 
+                    'productName', 
+                    'productTypeId', 
+                    'productCategoryId', 
+                    'productColorId', 
+                    'productPriceRangeId', 
+                    'productPrice', 
+                    'productOriginalPrice', 
+                    'productImage', 
+                    'discription', 
+                    'statusId', 
+                    'productDate', 
+                  ) 
+
+
+class AdminProduct(ExportActionMixin,admin.ModelAdmin):
     def image_preview(self,obj):
         if obj.productImage:
             return format_html('<img src="/static{}" width="100" height="auto" >',obj.productImage.url)
@@ -193,6 +222,7 @@ class AdminProduct(admin.ModelAdmin):
     date_hierarchy = "productDate" 
     image_preview.short_discription = "Image Preview" 
     readonly_fields = ["image_preview"] 
+    
     def __init__(self, model, admin_site):
         super().__init__(model, admin_site)
         self.opts.verbose_name_plural="4. Product " 
@@ -206,7 +236,7 @@ class AdminProductImageDetail(admin.ModelAdmin):
         "image_preview", 
         "productImageId", 
         'id', 
-            'productImageURL', 
+        'productImageURL', 
         'productImageDate', 
     ] 
     list_filter = ["productImageDate"]
@@ -345,8 +375,17 @@ class AdminPopularProduct(admin.ModelAdmin):
     def __init__(self, model, admin_site):
         super().__init__(model, admin_site)
         self.opts.verbose_name_plural="3. Product Popular" 
-
-class AdminCollection(admin.ModelAdmin): 
+        
+class ExportCollection(resources.ModelResource): 
+    class Meta: 
+        model = Collection 
+        fields = ( 
+            'id', 
+            'collectionImage', 
+            'collectionCaption', 
+        )
+        
+class AdminCollection(ExportActionMixin,admin.ModelAdmin): 
     def image_preview(self,obj):
         if obj.collectionImage:
             return format_html('<img src="/static{}" width="100" height="auto" >',obj.collectionImage.url)
@@ -360,6 +399,7 @@ class AdminCollection(admin.ModelAdmin):
     search_fields = ["id","collectionCaption"] 
     image_preview.short_discription = "Image Preview" 
     readonly_fields = ["image_preview"] 
+    resource_class = ExportCollection 
     def __init__(self, model, admin_site):
         super().__init__(model, admin_site)
         self.opts.verbose_name_plural="5. Collection-1" 
